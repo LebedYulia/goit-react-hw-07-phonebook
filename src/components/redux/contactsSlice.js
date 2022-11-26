@@ -26,22 +26,23 @@ const contactsSlice = createSlice({
       state.contacts = action.payload;
     },
     [fetchContacts.rejected]: handleRejected,
+    [addContact.pending]: handlePending,
+    [addContact.fulfilled](state, action) {
+      state.isLoading = false;
+      state.error = null;    
+      state.contacts.push(action.payload);     
+    },
+    [addContact.rejected]: handleRejected,
+  
+    [deleteContact.pending]: handlePending,
+    [deleteContact.fulfilled](state, action) {
+      state.isLoading = false;
+      state.error = null;
+      state.contacts = state.contacts.filter(contact => contact.id !== action.payload.id);
+    },
+    [deleteContact.rejected]: handleRejected,
   },
-  [addContact.pending]: handlePending,
-  [addContact.fulfilled](state, action) {
-    state.isLoading = false;
-    state.error = null;
-    state.contacts.push(action.payload);
-  },
-  [addContact.rejected]: handleRejected,
-
-  [deleteContact.pending]: handlePending,
-  [deleteContact.fulfilled](state, action) {
-    state.isLoading = false;
-    state.error = null;
-    state.contacts.filter(contact => contact.id !== action.payload);
-  },
-  [deleteContact.rejected]: handleRejected,
+ 
 });
 
 export const contactsReducer = contactsSlice.reducer;

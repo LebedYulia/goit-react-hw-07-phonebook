@@ -4,8 +4,7 @@ import { ContactItem } from 'components/ContactItem/ContactItem';
 
 export const ContactList = () => {
   const contacts = useSelector(selectContacts);
-  const filter = useSelector(selectFilter);
-  console.log(contacts)
+  const filter = useSelector(selectFilter);  
 
   const normalizedFilter = filter.toLowerCase();
 

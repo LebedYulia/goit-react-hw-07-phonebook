@@ -6,13 +6,14 @@ import { Button } from 'components/ContactForm/ContactForm.styled';
 
 export const ContactItem = ({ id, name, number }) => {
   const dispatch = useDispatch();
+  const handleDelete = () => dispatch(deleteContact(id))
 
   return (
     <Contact>
       <ContactInfo>
         {name}: {number}
       </ContactInfo>
-      <Button type="button" onClick={() => dispatch(deleteContact(id))}>
+      <Button type="button" onClick={handleDelete}>
         Delete
       </Button>
     </Contact>

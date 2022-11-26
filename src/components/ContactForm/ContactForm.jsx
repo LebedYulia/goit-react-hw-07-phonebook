@@ -22,7 +22,8 @@ export const ContactForm = () => {
     );
 
     if (containName) {
-      return alert(`${name} is alredy in contacts`);
+      form.reset();
+      return alert(`${name} is alredy in contacts`);      
     }
 
     dispatch(addContact({name, number}));
