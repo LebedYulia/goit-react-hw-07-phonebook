@@ -28,6 +28,7 @@ export const App = () => {
   
         <Section title={'Contacts'}>
           <Filter />
+          {error && <b>Server Error</b>}
           {isLoading && !error && <b>Request in progress...</b>}
           <ContactList />
         </Section>

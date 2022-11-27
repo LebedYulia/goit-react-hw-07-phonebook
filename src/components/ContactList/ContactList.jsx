@@ -1,22 +1,13 @@
 import { useSelector } from 'react-redux';
-import { selectContacts, selectFilter } from 'components/redux/selectors';
+import { selectFindContacts } from 'components/redux/selectors';
 import { ContactItem } from 'components/ContactItem/ContactItem';
 
 export const ContactList = () => {
-  const contacts = useSelector(selectContacts);
-  const filter = useSelector(selectFilter);  
-
-  const normalizedFilter = filter.toLowerCase();
-
-  const visibleContacts = contacts.filter(contact =>
-    contact.name.toLowerCase().includes(normalizedFilter)
-  );
-  
-
+  const findContactsByName = useSelector(selectFindContacts);
   return (
     <ul>
-      {visibleContacts.map(visibleContact => (
-        <ContactItem key={visibleContact.id} {...visibleContact}></ContactItem>
+      {findContactsByName.map(findContactByName => (
+        <ContactItem key={findContactByName.id} {...findContactByName}></ContactItem>
       ))}
     </ul>
   );
